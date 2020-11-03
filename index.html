@@ -3,10 +3,113 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Websit Example</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <!-- header menu -->
+    <header class="nav-header">
+      <!-- logo -->
+      <h1><a href="./index.html" id="logo">days.</a></h1>
+      <!-- burger menu icon -->
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+      </div>
+    </header>
+    <main>
+      <section class="mountain slide">
+        <div class="hero-img">
+          <img src="./img/forest.png" alt="forest image" />
+          <!-- animation -->
+          <div class="reveal-img"></div>
+        </div>
+        <div class="hero-desc">
+          <div class="title">
+            <h2>
+              Freedom at your <span class="mountian-span">fingertips.</span>
+            </h2>
+            <div class="title-swipe t-swipe-mountain"></div>
+          </div>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+            temporibus repudiandae ut quia ducimus eum, corrupti voluptas magnam
+            error quae.
+          </p>
+          <a class="explore mountain-exp">Explore</a>
+          <!-- animation -->
+          <div class="reveal-text"></div>
+        </div>
+      </section>
+      <section class="hike slide">
+        <div class="hero-img">
+          <img src="./img/hike.png" alt="hike image" />
+          <div class="reveal-img"></div>
+        </div>
+        <div class="hero-desc">
+          <div class="title">
+            <h2>Freedom at your <span class="hike-span">fingertips.</span></h2>
+            <div class="title-swipe t-swipe-hike"></div>
+          </div>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+            temporibus repudiandae ut quia ducimus eum, corrupti voluptas magnam
+            error quae.
+          </p>
+          <a class="explore hike-exp">Explore</a>
+          <div class="reveal-text"></div>
+        </div>
+      </section>
+      <section class="fashion slide">
+        <div class="hero-img">
+          <img src="./img/fashion.png" alt="fashion image" />
+          <div class="reveal-img"></div>
+        </div>
+        <div class="hero-desc">
+          <div class="title">
+            <h2>
+              Freedom at your <span class="fashion-span">fingertips.</span>
+            </h2>
+            <div class="title-swipe t-swipe-fashion"></div>
+          </div>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
+            temporibus repudiandae ut quia ducimus eum, corrupti voluptas magnam
+            error quae.
+          </p>
+          <a class="explore fashion-exp">Explore</a>
+          <div class="reveal-text"></div>
+        </div>
+      </section>
+    </main>
+    <!-- navbar -->
+    <nav class="nav-bar">
+      <ul class="nav-links">
+        <h3>Twitter</h3>
+        <h3>Youtube</h3>
+        <h3>Instagram</h3>
+      </ul>
+      <div class="contact">
+        <h2>Stay in contact</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde
+          reiciendis quos, nobis soluta sapiente commodi beatae. Consectetur,
+          dicta aut? Dolore!
+        </p>
+      </div>
+    </nav>
+    <!-- custom cursor -->
+    <div class="cursor-div">
+      <span class="cursor-text"></span>
+    </div>
+    <!-- Loading -->
+    <div class="swipe swipe1"></div>
+    <div class="swipe swipe2"></div>
+    <div class="swipe swipe3"></div>
     <script src="./app.js"></script>
   </body>
 </html>
