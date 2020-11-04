@@ -87,7 +87,23 @@ slides.forEach((slide) => {
       trigger: slide,
       start: "top center",
       markers: true,
-      toggleAction: "play none none reverse",
+      toggleAction: "play none reverse reverse",
+    },
+  });
+
+  const t2 = new gsap.timeline({
+    defaults: {
+      duration: 1,
+      ease: "power2.inOut",
+    },
+    scrollTrigger: {
+      trigger: slide,
+      start: "25% top",
+      markers: true,
+      scrub: true,
+      pin: true,
+      pinSpacing: false,
+      toggleAction: "play none reverse reverse",
     },
   });
 
@@ -95,4 +111,6 @@ slides.forEach((slide) => {
     .fromTo(revealImg, { x: "0%" }, { x: "100%" }, "-=1")
     .fromTo(revealText, { x: "0%" }, { x: "100%" }, "-=0.75")
     .fromTo(nav, { y: "-100%" }, { y: "0%" }, "-=0.5");
+
+  t2.fromTo(slide, { scale: 1, opacity: 1 }, { scale: 0.5, opacity: 0 });
 });
