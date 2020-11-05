@@ -67,7 +67,9 @@
 // }
 
 // animateSlides();
-
+// GLOBALS
+let mouse = document.querySelector(".cursor");
+let mouseText = mouse.querySelector("span");
 // GSAP SCROLL TRIGGER
 
 const slides = document.querySelectorAll(".slide");
@@ -114,3 +116,27 @@ slides.forEach((slide) => {
 
   t2.fromTo(slide, { scale: 1, opacity: 1 }, { scale: 0.5, opacity: 0 });
 });
+
+function cursor(e) {
+  mouse.style.top = e.pageY + "px";
+  mouse.style.left = e.pageX + "px";
+}
+
+function activeCursor(e) {
+  const item = e.target;
+  if (item.id === "logo" || item.classList.contains("burger")) {
+    mouse.classList.add("nav-active");
+  } else {
+    mouse.classList.remove("nav-active");
+  }
+  if (item.classList.contains("explore")) {
+    mouse.classList.add("explore-active");
+    mouseText.innerText = "Tap";
+  } else {
+    mouse.classList.remove("explore-active");
+    mouseText.innerText = "";
+  }
+}
+
+window.addEventListener("mousemove", cursor);
+window.addEventListener("mouseover", activeCursor);
