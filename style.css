@@ -186,6 +186,31 @@ body {
   transform: translate(-50%, -50%);
 }
 
-.scrollmagic-pin-spacer {
+.title {
+  position: relative;
+  overflow: hidden;
+}
+
+.title-swipe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  mix-blend-mode: darken;
+  transform: translateY(100%);
+}
+
+.t-swipe-mountain {
+  background-color: rgb(255, 139, 93);
+}
+.t-swipe-hike {
+  background-color: rgb(86, 124, 228);
+}
+.t-swipe-fashion {
+  background-color: rgb(167, 110, 231);
+}
+
+.t-swipe- .scrollmagic-pin-spacer {
   position: static !important;
 }
