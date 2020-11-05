@@ -93,12 +93,12 @@ slides.forEach((slide) => {
 
   const t2 = new gsap.timeline({
     defaults: {
-      duration: 1,
+      duration: 0.5,
       ease: "power2.inOut",
     },
     scrollTrigger: {
       trigger: slide,
-      start: "25% top",
+      start: "top top",
       markers: true,
       scrub: true,
       pin: true,
