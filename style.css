@@ -211,6 +211,8 @@ body {
   background-color: rgb(167, 110, 231);
 }
 
-.t-swipe- .scrollmagic-pin-spacer {
+/* scroll magic stuff
+.scrollmagic-pin-spacer {
   position: static !important;
 }
+*/
