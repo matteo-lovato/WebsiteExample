@@ -70,6 +70,7 @@
 // GLOBALS
 const mouse = document.querySelector(".cursor");
 const mouseText = mouse.querySelector("span");
+const burger = document.querySelector(".burger");
 // GSAP SCROLL TRIGGER
 
 const slides = document.querySelectorAll(".slide");
@@ -140,5 +141,30 @@ function activeCursor(e) {
   }
 }
 
+function navToggle(e) {
+  if (!e.target.classList.contains("active")) {
+    e.target.classList.add("active");
+    // transform the burger in an X
+    gsap.to(".line1", 0.5, { rotate: "45", y: 5, background: "black" });
+    gsap.to(".line2", 0.5, { rotate: "-45", y: -5, background: "black" });
+    // change logo color to black
+    gsap.to("#logo", 1, { color: "black" });
+    //expand the burger menu with a circle animation
+    gsap.to(".nav-bar", 1, { clipPath: "circle(2500px at 100% -10%" });
+    // can't scroll while burger menu is open
+    document.body.classList.add("hide");
+  } else {
+    // get back to orginal
+    e.target.classList.remove("active");
+    gsap.to(".line1", 0.5, { rotate: "0", y: 0, background: "white" });
+    gsap.to(".line2", 0.5, { rotate: "0", y: 0, background: "white" });
+    gsap.to("#logo", 1, { color: "white" });
+    gsap.to(".nav-bar", 1, { clipPath: "circle(50px at 100% -10%" });
+    document.body.classList.remove("hide");
+  }
+}
+
+// event listeners
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
+burger.addEventListener("click", navToggle);

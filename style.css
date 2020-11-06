@@ -218,3 +218,7 @@ body {
   position: static !important;
 }
 */
+
+body.hide {
+  overflow: hidden;
+}
