@@ -71,53 +71,54 @@
 const mouse = document.querySelector(".cursor");
 const mouseText = mouse.querySelector("span");
 const burger = document.querySelector(".burger");
+const logo = document.querySelector("#logo");
 // GSAP SCROLL TRIGGER
+function animateSlides() {
+  const slides = document.querySelectorAll(".slide");
+  const nav = document.querySelector(".nav-header");
 
-const slides = document.querySelectorAll(".slide");
-const nav = document.querySelector(".nav-header");
+  slides.forEach((slide) => {
+    const img = slide.querySelector("img");
+    const revealImg = slide.querySelector(".reveal-img");
+    const revealText = slide.querySelector(".reveal-text");
 
-slides.forEach((slide) => {
-  const img = slide.querySelector("img");
-  const revealImg = slide.querySelector(".reveal-img");
-  const revealText = slide.querySelector(".reveal-text");
+    const tl = new gsap.timeline({
+      defaults: {
+        duration: 1,
+        ease: "power2.inOut",
+      },
+      scrollTrigger: {
+        trigger: slide,
+        start: "top center",
+        markers: true,
+        toggleAction: "play none reverse reverse",
+      },
+    });
 
-  const tl = new gsap.timeline({
-    defaults: {
-      duration: 1,
-      ease: "power2.inOut",
-    },
-    scrollTrigger: {
-      trigger: slide,
-      start: "top center",
-      markers: true,
-      toggleAction: "play none reverse reverse",
-    },
+    const t2 = new gsap.timeline({
+      defaults: {
+        duration: 0.5,
+        ease: "power2.inOut",
+      },
+      scrollTrigger: {
+        trigger: slide,
+        start: "top top",
+        markers: true,
+        scrub: true,
+        pin: true,
+        pinSpacing: false,
+        toggleAction: "play none reverse reverse",
+      },
+    });
+
+    tl.fromTo(img, { scale: 2 }, { scale: 1 })
+      .fromTo(revealImg, { x: "0%" }, { x: "100%" }, "-=1")
+      .fromTo(revealText, { x: "0%" }, { x: "100%" }, "-=0.75")
+      .fromTo(nav, { y: "-100%" }, { y: "0%" }, "-=0.5");
+
+    t2.fromTo(slide, { scale: 1, opacity: 1 }, { scale: 0.5, opacity: 0 });
   });
-
-  const t2 = new gsap.timeline({
-    defaults: {
-      duration: 0.5,
-      ease: "power2.inOut",
-    },
-    scrollTrigger: {
-      trigger: slide,
-      start: "top top",
-      markers: true,
-      scrub: true,
-      pin: true,
-      pinSpacing: false,
-      toggleAction: "play none reverse reverse",
-    },
-  });
-
-  tl.fromTo(img, { scale: 2 }, { scale: 1 })
-    .fromTo(revealImg, { x: "0%" }, { x: "100%" }, "-=1")
-    .fromTo(revealText, { x: "0%" }, { x: "100%" }, "-=0.75")
-    .fromTo(nav, { y: "-100%" }, { y: "0%" }, "-=0.5");
-
-  t2.fromTo(slide, { scale: 1, opacity: 1 }, { scale: 0.5, opacity: 0 });
-});
-
+}
 function cursor(e) {
   mouse.style.top = e.pageY + "px";
   mouse.style.left = e.pageX + "px";
@@ -164,7 +165,57 @@ function navToggle(e) {
   }
 }
 
+// barba page transitions
+barba.init({
+  views: [
+    {
+      namespace: "home",
+      beforeEnter() {
+        animateSlides();
+        logo.href = "./index.html";
+      },
+    },
+    {
+      namespace: "fashion",
+      beforeEnter() {
+        logo.href = "../index.html";
+        gsap.fromTo(".nav-header", 1, { y: "-100%" }, { y: "0%" }, "-=2.5");
+      },
+    },
+  ],
+  transitions: [
+    {
+      leave({ current }) {
+        let done = this.async();
+        const tl = new gsap.timeline({ defaults: { ease: "power2.inOut" } });
+        tl.fromTo(current.container, 1, { opacity: 1 }, { opacity: 0 });
+        tl.fromTo(
+          ".swipe",
+          0.75,
+          { x: "-100%" },
+          { x: "0%", onComplete: done },
+          "-=0.5"
+        );
+      },
+      enter({ next }) {
+        let done = this.async();
+        // scroll to the top when entering in a new page
+        window.scrollTo(0, 0);
+        const tl = new gsap.timeline({ defaults: { ease: "power2.inOut" } });
+        tl.fromTo(
+          ".swipe",
+          1,
+          { x: "0%" },
+          { x: "100%", stagger: 0.25, onComplete: done }
+        );
+        tl.fromTo(next.container, 1, { opacity: 0 }, { opacity: 1 });
+      },
+    },
+  ],
+});
+
 // event listeners
 window.addEventListener("mousemove", cursor);
 window.addEventListener("mouseover", activeCursor);
 burger.addEventListener("click", navToggle);
+animateSlides();
