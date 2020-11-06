@@ -68,8 +68,8 @@
 
 // animateSlides();
 // GLOBALS
-let mouse = document.querySelector(".cursor");
-let mouseText = mouse.querySelector("span");
+const mouse = document.querySelector(".cursor");
+const mouseText = mouse.querySelector("span");
 // GSAP SCROLL TRIGGER
 
 const slides = document.querySelectorAll(".slide");
